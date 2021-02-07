@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/ng-gallery-lightbox.umd.js",
+  "module": "../fesm2015/ng-gallery-lightbox.js",
+  "es2015": "../fesm2015/ng-gallery-lightbox.js",
+  "esm2015": "../esm2015/lightbox/ng-gallery-lightbox.js",
+  "fesm2015": "../fesm2015/ng-gallery-lightbox.js",
+  "typings": "ng-gallery-lightbox.d.ts",
+  "metadata": "ng-gallery-lightbox.metadata.json",
+  "sideEffects": false,
+  "name": "ng-gallery/lightbox"
+}
