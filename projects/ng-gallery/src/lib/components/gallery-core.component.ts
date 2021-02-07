@@ -49,7 +49,7 @@ export class GalleryCoreComponent {
   @Output() error = new EventEmitter<GalleryError>();
 
   /** Set thumbnails position */
-  @HostBinding('attr.thumbPosition') get thumbPosition(): 'top' | 'left' | 'right' | 'bottom' {
+  @HostBinding('attr.thumbPosition') get thumbPosition(): 'top' | 'left' | 'left-top' | 'right' | 'bottom' {
     return this.config.thumbPosition;
   }
 

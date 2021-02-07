@@ -20,8 +20,9 @@ export enum LoadingStrategy {
 export enum ThumbnailsPosition {
   Top = 'top',
   Left = 'left',
+  LeftTop = 'left-top',
   Right = 'right',
-  Bottom = 'bottom'
+  Bottom = 'bottom',
 }
 
 export enum ImageLoaderMode {

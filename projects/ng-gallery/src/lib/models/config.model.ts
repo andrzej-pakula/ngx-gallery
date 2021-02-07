@@ -30,5 +30,5 @@ export interface GalleryConfig {
   counterPosition?: 'top' | 'bottom';
   slidingDirection?: 'horizontal' | 'vertical';
   loadingStrategy?: 'preload' | 'lazy' | 'default';
-  thumbPosition?: 'top' | 'left' | 'right' | 'bottom';
+  thumbPosition?: 'top' | 'left' | 'left-top' | 'right' | 'bottom';
 }

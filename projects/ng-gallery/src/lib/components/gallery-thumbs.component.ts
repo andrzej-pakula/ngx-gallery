@@ -101,6 +101,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
       switch (this.config.thumbPosition) {
         case ThumbnailsPosition.Right:
         case ThumbnailsPosition.Left:
+        case ThumbnailsPosition.LeftTop:
           direction = Hammer.DIRECTION_VERTICAL;
           break;
         case ThumbnailsPosition.Top:
@@ -139,6 +140,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
     switch (this.config.thumbPosition) {
       case ThumbnailsPosition.Right:
       case ThumbnailsPosition.Left:
+      case ThumbnailsPosition.LeftTop:
         this.updateSlider({value: e.deltaY, active: true});
         if (e.isFinal) {
           this.updateSlider({value: 0, active: false});
@@ -162,6 +164,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
     switch (this.config.thumbPosition) {
       case ThumbnailsPosition.Right:
       case ThumbnailsPosition.Left:
+      case ThumbnailsPosition.LeftTop:
         this.updateSlider({value: this._freeModeCurrentOffset + e.deltaY, active: true});
         if (e.isFinal) {
           if (this.minFreeScrollExceeded(e.deltaY, this.config.thumbWidth, this.config.thumbHeight)) {
@@ -225,6 +228,15 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
         this.width = this.config.thumbWidth + 'px';
         this.height = '100%';
         value = -(this.state.currIndex * this.config.thumbHeight) - (this.config.thumbHeight / 2 - state.value);
+        return {
+          transform: `translate3d(0, ${value}px, 0)`,
+          width: '100%',
+          height: this.state.items.length * this.config.thumbHeight + 'px'
+        };
+      case ThumbnailsPosition.LeftTop:
+        this.width = this.config.thumbWidth + 'px';
+        this.height = '100%';
+        value = -(this.state.currIndex * this.config.thumbHeight) - state.value;
         return {
           transform: `translate3d(0, ${value}px, 0)`,
           width: '100%',

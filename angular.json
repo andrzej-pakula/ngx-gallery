@@ -163,6 +163,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-gallery-demo"
+    }
+  },
+  "defaultProject": "ng-gallery-demo",
+  "cli": {
+    "analytics": false
+  }
 }

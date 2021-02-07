@@ -35,6 +35,7 @@
   }
 
   gallery-core[thumbPosition='left'],
+  gallery-core[thumbPosition='left-top'],
   gallery-core[thumbPosition='right'] {
     gallery-thumbs {
       .g-slider {
@@ -52,7 +53,8 @@
     flex-direction: column;
   }
 
-  gallery-core[thumbPosition='left'] {
+  gallery-core[thumbPosition='left'],
+  gallery-core[thumbPosition='left-top'] {
     flex-direction: row;
   }
 

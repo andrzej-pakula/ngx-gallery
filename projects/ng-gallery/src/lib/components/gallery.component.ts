@@ -66,7 +66,7 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
   @Input() counterPosition: 'top' | 'bottom' = this._gallery.config.counterPosition;
   @Input() slidingDirection: 'horizontal' | 'vertical' = this._gallery.config.slidingDirection;
   @Input() loadingStrategy: 'preload' | 'lazy' | 'default' = this._gallery.config.loadingStrategy;
-  @Input() thumbPosition: 'top' | 'left' | 'right' | 'bottom' = this._gallery.config.thumbPosition;
+  @Input() thumbPosition: 'top' | 'left' | 'left-top' | 'right' | 'bottom' = this._gallery.config.thumbPosition;
 
   // Inputs used by the lightbox
 
