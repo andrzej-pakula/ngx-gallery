@@ -106,6 +106,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
           break;
         case ThumbnailsPosition.Top:
         case ThumbnailsPosition.Bottom:
+        case ThumbnailsPosition.BottomLeft:
           direction = Hammer.DIRECTION_HORIZONTAL;
           break;
       }
@@ -149,6 +150,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
         break;
       case ThumbnailsPosition.Top:
       case ThumbnailsPosition.Bottom:
+      case ThumbnailsPosition.BottomLeft:
         this.updateSlider({value: e.deltaX, active: true});
         if (e.isFinal) {
           this.updateSlider({value: 0, active: false});
@@ -179,6 +181,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
         break;
       case ThumbnailsPosition.Top:
       case ThumbnailsPosition.Bottom:
+      case ThumbnailsPosition.BottomLeft:
         this.updateSlider({value: this._freeModeCurrentOffset + e.deltaX, active: true});
         if (e.isFinal) {
           if (this.minFreeScrollExceeded(e.deltaX, this.config.thumbHeight, this.config.thumbWidth)) {
