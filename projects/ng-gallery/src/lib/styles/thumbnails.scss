@@ -49,6 +49,14 @@
     }
   }
 
+  gallery-core[thumbPosition='left-top'] {
+    gallery-thumbs {
+      .g-slider {
+        top: 0;
+      }
+    }
+  }
+
   gallery-core[thumbPosition='top'] {
     flex-direction: column;
   }

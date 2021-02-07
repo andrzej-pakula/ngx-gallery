@@ -34,7 +34,7 @@ export class GalleryExampleComponent implements OnInit {
           };
         }
         return {
-          thumbPosition: ThumbnailsPosition.Left,
+          thumbPosition: ThumbnailsPosition.LeftTop,
           thumbWidth: 120,
           thumbHeight: 90
         };
