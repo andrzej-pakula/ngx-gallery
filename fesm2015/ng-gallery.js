@@ -1117,7 +1117,7 @@ class GalleryThumbsComponent {
             case ThumbnailsPosition.BottomLeft:
                 this.width = '100%';
                 this.height = this.config.thumbHeight + 'px';
-                value = -(this.state.currIndex * this.config.thumbWidth);
+                value = -(this.state.currIndex * this.config.thumbWidth) - state.value;
                 return {
                     transform: `translate3d(${value}px, 0, 0)`,
                     width: this.state.items.length * this.config.thumbWidth + 'px',
