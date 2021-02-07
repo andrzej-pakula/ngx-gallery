@@ -28,5 +28,5 @@ export interface GalleryConfig {
     counterPosition?: 'top' | 'bottom';
     slidingDirection?: 'horizontal' | 'vertical';
     loadingStrategy?: 'preload' | 'lazy' | 'default';
-    thumbPosition?: 'top' | 'left' | 'left-top' | 'right' | 'bottom';
+    thumbPosition?: 'top' | 'left' | 'left-top' | 'right' | 'bottom' | 'bottom-left';
 }

@@ -30,7 +30,7 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     counterPosition: 'top' | 'bottom';
     slidingDirection: 'horizontal' | 'vertical';
     loadingStrategy: 'preload' | 'lazy' | 'default';
-    thumbPosition: 'top' | 'left' | 'left-top' | 'right' | 'bottom';
+    thumbPosition: 'top' | 'left' | 'left-top' | 'right' | 'bottom' | 'bottom-left';
     /** Destroy gallery ref on component destroy event */
     destroyRef: boolean;
     /** Skip initializing the config with components inputs (Lightbox mode) */

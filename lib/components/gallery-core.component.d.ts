@@ -9,7 +9,7 @@ export declare class GalleryCoreComponent {
     thumbClick: EventEmitter<number>;
     error: EventEmitter<GalleryError>;
     /** Set thumbnails position */
-    get thumbPosition(): 'top' | 'left' | 'left-top' | 'right' | 'bottom';
+    get thumbPosition(): 'top' | 'left' | 'left-top' | 'right' | 'bottom' | 'bottom-left';
     /** Set sliding direction */
     get slidingDirection(): 'horizontal' | 'vertical';
     /** Disable thumbnails clicks */

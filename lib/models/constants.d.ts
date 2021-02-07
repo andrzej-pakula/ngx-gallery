@@ -19,7 +19,8 @@ export declare enum ThumbnailsPosition {
     Left = "left",
     LeftTop = "left-top",
     Right = "right",
-    Bottom = "bottom"
+    Bottom = "bottom",
+    BottomLeft = "bottom-left"
 }
 export declare enum ImageLoaderMode {
     Determinate = "determinate",
