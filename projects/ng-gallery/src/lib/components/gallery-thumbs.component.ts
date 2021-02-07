@@ -223,6 +223,15 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
           width: this.state.items.length * this.config.thumbWidth + 'px',
           height: '100%'
         };
+      case ThumbnailsPosition.BottomLeft:
+        this.width = '100%';
+        this.height = this.config.thumbHeight + 'px';
+        value = -(this.state.currIndex * this.config.thumbWidth);
+        return {
+          transform: `translate3d(${value}px, 0, 0)`,
+          width: this.state.items.length * this.config.thumbWidth + 'px',
+          height: '100%'
+        };
       case ThumbnailsPosition.Left:
       case ThumbnailsPosition.Right:
         this.width = this.config.thumbWidth + 'px';

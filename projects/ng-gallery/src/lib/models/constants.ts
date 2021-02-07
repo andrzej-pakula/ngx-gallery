@@ -23,6 +23,7 @@ export enum ThumbnailsPosition {
   LeftTop = 'left-top',
   Right = 'right',
   Bottom = 'bottom',
+  BottomLeft = 'bottom-left',
 }
 
 export enum ImageLoaderMode {

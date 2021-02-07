@@ -23,7 +23,8 @@
   }
 
   gallery-core[thumbPosition='top'],
-  gallery-core[thumbPosition='bottom'] {
+  gallery-core[thumbPosition='bottom'],
+  gallery-core[thumbPosition='bottom-left'] {
     gallery-thumbs .g-slider {
       flex-direction: row;
       top: 0;
@@ -31,6 +32,12 @@
     }
     gallery-thumb {
       padding: 1px 0 1px 1px;
+    }
+  }
+
+  gallery-core[thumbPosition='bottom-left'] {
+    gallery-thumbs .g-slider {
+      left: 0;
     }
   }
 
@@ -70,7 +77,8 @@
     flex-direction: row-reverse;
   }
 
-  gallery-core[thumbPosition='bottom'] {
+  gallery-core[thumbPosition='bottom'],
+  gallery-core[thumbPosition='bottom-left'] {
     flex-direction: column-reverse;
   }
 
