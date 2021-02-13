@@ -1,4 +1,4 @@
-import { InjectionToken, ɵɵdefineInjectable, ɵɵinject, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, ViewChild, HostBinding, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
+import { InjectionToken, ɵɵdefineInjectable, ɵɵinject, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, HostBinding, Output, ViewChild, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
 import { Subject, BehaviorSubject, of, EMPTY, Subscription, fromEvent, zip } from 'rxjs';
 import { filter, switchMap, delay, tap, map, debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -419,6 +419,9 @@ class GalleryComponent {
         this._playingChange$ = Subscription.EMPTY;
         this._playerListener$ = Subscription.EMPTY;
     }
+    get height() {
+        return this._height;
+    }
     getConfig() {
         return {
             nav: this.nav,
@@ -556,6 +559,9 @@ class GalleryComponent {
     stop() {
         this.galleryRef.stop();
     }
+    withHeight(height) {
+        this._height = `${height}px`;
+    }
 }
 GalleryComponent.decorators = [
     { type: Component, args: [{
@@ -602,6 +608,7 @@ GalleryComponent.propDecorators = {
     slidingDirection: [{ type: Input }],
     loadingStrategy: [{ type: Input }],
     thumbPosition: [{ type: Input }],
+    height: [{ type: HostBinding, args: ['style.height',] }],
     destroyRef: [{ type: Input }],
     skipInitConfig: [{ type: Input }],
     itemClick: [{ type: Output }],

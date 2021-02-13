@@ -735,6 +735,13 @@
             this._playingChange$ = rxjs.Subscription.EMPTY;
             this._playerListener$ = rxjs.Subscription.EMPTY;
         }
+        Object.defineProperty(GalleryComponent.prototype, "height", {
+            get: function () {
+                return this._height;
+            },
+            enumerable: false,
+            configurable: true
+        });
         GalleryComponent.prototype.getConfig = function () {
             return {
                 nav: this.nav,
@@ -873,6 +880,9 @@
         GalleryComponent.prototype.stop = function () {
             this.galleryRef.stop();
         };
+        GalleryComponent.prototype.withHeight = function (height) {
+            this._height = height + "px";
+        };
         return GalleryComponent;
     }());
     GalleryComponent.decorators = [
@@ -912,6 +922,7 @@
         slidingDirection: [{ type: i0.Input }],
         loadingStrategy: [{ type: i0.Input }],
         thumbPosition: [{ type: i0.Input }],
+        height: [{ type: i0.HostBinding, args: ['style.height',] }],
         destroyRef: [{ type: i0.Input }],
         skipInitConfig: [{ type: i0.Input }],
         itemClick: [{ type: i0.Output }],

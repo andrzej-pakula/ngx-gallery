@@ -31,6 +31,8 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     slidingDirection: 'horizontal' | 'vertical';
     loadingStrategy: 'preload' | 'lazy' | 'default';
     thumbPosition: 'top' | 'left' | 'left-top' | 'right' | 'bottom' | 'bottom-left';
+    _height: string;
+    get height(): string;
     /** Destroy gallery ref on component destroy event */
     destroyRef: boolean;
     /** Skip initializing the config with components inputs (Lightbox mode) */
@@ -69,4 +71,5 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     reset(): void;
     play(interval?: number): void;
     stop(): void;
+    withHeight(height: string | number): void;
 }
