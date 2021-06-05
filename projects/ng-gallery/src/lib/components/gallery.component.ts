@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   TemplateRef,
   EventEmitter,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy, HostBinding
 } from '@angular/core';
 import { Subscription, SubscriptionLike } from 'rxjs';
 import { Gallery } from '../services/gallery.service';
@@ -89,6 +89,7 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
   private _indexChange$: SubscriptionLike = Subscription.EMPTY;
   private _playingChange$: SubscriptionLike = Subscription.EMPTY;
   private _playerListener$: SubscriptionLike = Subscription.EMPTY;
+  _height: string;
 
   constructor(private _gallery: Gallery) {
   }
@@ -253,5 +254,17 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
 
   stop() {
     this.galleryRef.stop();
+  }
+
+  withHeight(height: number) {
+    this._height = `${height}px`;
+  }
+
+  get height() {
+    return this._height;
+  }
+
+  @HostBinding('style.height') get applyHeight() {
+    return this.height;
   }
 }
