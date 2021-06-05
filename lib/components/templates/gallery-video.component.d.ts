@@ -1,4 +1,5 @@
 import { OnInit, ElementRef, EventEmitter } from '@angular/core';
+import * as ɵngcc0 from '@angular/core';
 export declare class GalleryVideoComponent implements OnInit {
     videoSources: {
         url: string;
@@ -17,4 +18,8 @@ export declare class GalleryVideoComponent implements OnInit {
     error: EventEmitter<Error>;
     video: ElementRef;
     ngOnInit(): void;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryVideoComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryVideoComponent, "gallery-video", never, { "pauseVideo": "pause"; "playVideo": "play"; "src": "src"; "poster": "poster"; "controlsEnabled": "controls"; }, { "error": "error"; }, never, never>;
 }
+
+//# sourceMappingURL=gallery-video.component.d.ts.map

@@ -1,5 +1,6 @@
 import { GalleryRef } from './gallery-ref';
 import { GalleryConfig } from '../models/config.model';
+import * as ɵngcc0 from '@angular/core';
 export declare class Gallery {
     /** Store gallery instances */
     private readonly _instances;
@@ -24,4 +25,7 @@ export declare class Gallery {
      * A destroyer function for each gallery instance
      */
     private deleteInstance;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<Gallery, [{ optional: true; }]>;
 }
+
+//# sourceMappingURL=gallery.service.d.ts.map

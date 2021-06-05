@@ -12,3 +12,5 @@ export { GalleryThumbComponent as ɵg } from './lib/components/gallery-thumb.com
 export { GalleryThumbsComponent as ɵf } from './lib/components/gallery-thumbs.component';
 export { LazyImage as ɵi } from './lib/directives/lazy-image';
 export { TapClick as ɵj } from './lib/directives/tap-click';
+
+//# sourceMappingURL=ng-gallery.d.ts.map

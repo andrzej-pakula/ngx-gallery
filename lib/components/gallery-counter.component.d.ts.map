@@ -1,0 +1,1 @@
+{"version":3,"file":"gallery-counter.component.d.ts","sources":["gallery-counter.component.d.ts"],"names":[],"mappings":"AAAA;;AACA;AACA;;;AACA","sourcesContent":["import { GalleryState } from '../models/gallery.model';\nexport declare class GalleryCounterComponent {\n    state: GalleryState;\n}\n"]}

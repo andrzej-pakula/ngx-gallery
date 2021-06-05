@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { GalleryConfig } from '../models/config.model';
 import { GalleryItemType } from '../models/constants';
+import * as ɵngcc0 from '@angular/core';
 export declare class GalleryItemComponent {
     readonly Types: typeof GalleryItemType;
     /** Gallery config */
@@ -19,4 +20,8 @@ export declare class GalleryItemComponent {
     get isAutoPlay(): any;
     get youtubeSrc(): string;
     get load(): boolean;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryItemComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryItemComponent, "gallery-item", never, { "config": "config"; "index": "index"; "currIndex": "currIndex"; "type": "type"; "data": "data"; }, { "error": "error"; }, never, never>;
 }
+
+//# sourceMappingURL=gallery-item.component.d.ts.map

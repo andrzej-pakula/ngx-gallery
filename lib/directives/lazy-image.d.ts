@@ -1,5 +1,6 @@
 import { OnDestroy, SimpleChanges, OnChanges, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as ɵngcc0 from '@angular/core';
 export declare class LazyImage implements OnChanges, OnDestroy {
     private document;
     private _imageLoader$;
@@ -16,4 +17,8 @@ export declare class LazyImage implements OnChanges, OnDestroy {
      * @param url
      */
     nativeLoader(url: string): Observable<any>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<LazyImage, never>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDeclaration<LazyImage, "[lazyImage]", never, { "src": "lazyImage"; }, { "loaded": "loaded"; "error": "error"; }, never>;
 }
+
+//# sourceMappingURL=lazy-image.d.ts.map

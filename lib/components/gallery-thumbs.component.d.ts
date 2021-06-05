@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GalleryConfig } from '../models/config.model';
 import { GalleryState, GalleryError } from '../models/gallery.model';
 import { SliderState } from '../models/slider.model';
+import * as ɵngcc0 from '@angular/core';
 export declare class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
     private _el;
     private _zone;
@@ -57,4 +58,8 @@ export declare class GalleryThumbsComponent implements OnInit, OnChanges, OnDest
     private next;
     private prev;
     private updateSlider;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryThumbsComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryThumbsComponent, "gallery-thumbs", never, { "state": "state"; "config": "config"; }, { "action": "action"; "thumbClick": "thumbClick"; "error": "error"; }, never, never>;
 }
+
+//# sourceMappingURL=gallery-thumbs.component.d.ts.map

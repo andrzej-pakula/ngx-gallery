@@ -1,5 +1,6 @@
 import { OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeStyle } from '@angular/platform-browser';
+import * as ɵngcc0 from '@angular/core';
 export declare class GalleryImageComponent implements OnInit, OnDestroy {
     private _sanitizer;
     /** Stream that emits the state */
@@ -36,4 +37,8 @@ export declare class GalleryImageComponent implements OnInit, OnDestroy {
     }): void;
     onLoaded(blobUrl: string): void;
     onError(err: Error): void;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryImageComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryImageComponent, "gallery-image", never, { "isThumbnail": "isThumbnail"; "src": "src"; "loadingIcon": "loadingIcon"; "loadingError": "loadingError"; }, { "error": "error"; }, never, never>;
 }
+
+//# sourceMappingURL=gallery-image.component.d.ts.map

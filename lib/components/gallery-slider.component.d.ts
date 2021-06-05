@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GalleryState, GalleryError } from '../models/gallery.model';
 import { GalleryConfig } from '../models/config.model';
 import { SliderState } from '../models/slider.model';
+import * as ɵngcc0 from '@angular/core';
 export declare class GallerySliderComponent implements OnInit, OnChanges, OnDestroy {
     private _el;
     private _zone;
@@ -42,4 +43,8 @@ export declare class GallerySliderComponent implements OnInit, OnChanges, OnDest
     private next;
     private prev;
     private updateSlider;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GallerySliderComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GallerySliderComponent, "gallery-slider", never, { "state": "state"; "config": "config"; }, { "action": "action"; "itemClick": "itemClick"; "error": "error"; }, never, ["*"]>;
 }
+
+//# sourceMappingURL=gallery-slider.component.d.ts.map

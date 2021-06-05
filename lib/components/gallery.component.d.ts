@@ -3,6 +3,7 @@ import { Gallery } from '../services/gallery.service';
 import { GalleryRef } from '../services/gallery-ref';
 import { GalleryError, GalleryItem, GalleryState } from '../models/gallery.model';
 import { IframeItemData, ImageItemData, VideoItemData, YoutubeItemData } from './templates/items.model';
+import * as ɵngcc0 from '@angular/core';
 export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     private _gallery;
     galleryRef: GalleryRef;
@@ -31,8 +32,6 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     slidingDirection: 'horizontal' | 'vertical';
     loadingStrategy: 'preload' | 'lazy' | 'default';
     thumbPosition: 'top' | 'left' | 'left-top' | 'right' | 'bottom' | 'bottom-left';
-    _height: string;
-    get height(): string;
     /** Destroy gallery ref on component destroy event */
     destroyRef: boolean;
     /** Skip initializing the config with components inputs (Lightbox mode) */
@@ -71,5 +70,8 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     reset(): void;
     play(interval?: number): void;
     stop(): void;
-    withHeight(height: string | number): void;
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryComponent, "gallery", never, { "nav": "nav"; "dots": "dots"; "loop": "loop"; "thumb": "thumb"; "zoomOut": "zoomOut"; "counter": "counter"; "dotsSize": "dotsSize"; "autoPlay": "autoPlay"; "gestures": "gestures"; "thumbWidth": "thumbWidth"; "thumbHeight": "thumbHeight"; "disableThumb": "disableThumb"; "panSensitivity": "panSensitivity"; "playerInterval": "playerInterval"; "itemTemplate": "itemTemplate"; "thumbTemplate": "thumbTemplate"; "thumbMode": "thumbMode"; "imageSize": "imageSize"; "dotsPosition": "dotsPosition"; "counterPosition": "counterPosition"; "slidingDirection": "slidingDirection"; "loadingStrategy": "loadingStrategy"; "thumbPosition": "thumbPosition"; "destroyRef": "destroyRef"; "skipInitConfig": "skipInitConfig"; "id": "id"; "items": "items"; }, { "itemClick": "itemClick"; "thumbClick": "thumbClick"; "playingChange": "playingChange"; "indexChange": "indexChange"; "itemsChange": "itemsChange"; "error": "error"; }, never, ["*"]>;
 }
+
+//# sourceMappingURL=gallery.component.d.ts.map

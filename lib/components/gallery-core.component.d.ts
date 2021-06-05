@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { GalleryError, GalleryState } from '../models/gallery.model';
 import { GalleryConfig } from '../models/config.model';
+import * as ɵngcc0 from '@angular/core';
 export declare class GalleryCoreComponent {
     state: GalleryState;
     config: GalleryConfig;
@@ -20,4 +21,8 @@ export declare class GalleryCoreComponent {
     get dotsPosition(): 'top' | 'bottom';
     /** Set gallery counter position */
     get counterPosition(): 'top' | 'bottom';
+    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryCoreComponent, never>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryCoreComponent, "gallery-core", never, { "state": "state"; "config": "config"; }, { "action": "action"; "itemClick": "itemClick"; "thumbClick": "thumbClick"; "error": "error"; }, never, never>;
 }
+
+//# sourceMappingURL=gallery-core.component.d.ts.map
