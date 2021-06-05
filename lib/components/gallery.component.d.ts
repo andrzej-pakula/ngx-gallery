@@ -48,6 +48,7 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     private _indexChange$;
     private _playingChange$;
     private _playerListener$;
+    _height: string;
     constructor(_gallery: Gallery);
     private getConfig;
     onAction(i: string | number): void;
@@ -70,6 +71,9 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     reset(): void;
     play(interval?: number): void;
     stop(): void;
+    withHeight(height: number): void;
+    get height(): string;
+    get applyHeight(): string;
     static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryComponent, never>;
     static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryComponent, "gallery", never, { "nav": "nav"; "dots": "dots"; "loop": "loop"; "thumb": "thumb"; "zoomOut": "zoomOut"; "counter": "counter"; "dotsSize": "dotsSize"; "autoPlay": "autoPlay"; "gestures": "gestures"; "thumbWidth": "thumbWidth"; "thumbHeight": "thumbHeight"; "disableThumb": "disableThumb"; "panSensitivity": "panSensitivity"; "playerInterval": "playerInterval"; "itemTemplate": "itemTemplate"; "thumbTemplate": "thumbTemplate"; "thumbMode": "thumbMode"; "imageSize": "imageSize"; "dotsPosition": "dotsPosition"; "counterPosition": "counterPosition"; "slidingDirection": "slidingDirection"; "loadingStrategy": "loadingStrategy"; "thumbPosition": "thumbPosition"; "destroyRef": "destroyRef"; "skipInitConfig": "skipInitConfig"; "id": "id"; "items": "items"; }, { "itemClick": "itemClick"; "thumbClick": "thumbClick"; "playingChange": "playingChange"; "indexChange": "indexChange"; "itemsChange": "itemsChange"; "error": "error"; }, never, ["*"]>;
 }

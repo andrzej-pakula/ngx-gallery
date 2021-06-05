@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, ViewChild, HostBinding, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, HostBinding, ViewChild, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
 import { Subject, BehaviorSubject, of, EMPTY, Subscription, fromEvent, zip } from 'rxjs';
 import { filter, switchMap, delay, tap, map, debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -557,6 +557,15 @@ class GalleryComponent {
     stop() {
         this.galleryRef.stop();
     }
+    withHeight(height) {
+        this._height = `${height}px`;
+    }
+    get height() {
+        return this._height;
+    }
+    get applyHeight() {
+        return this.height;
+    }
 }
 GalleryComponent.decorators = [
     { type: Component, args: [{
@@ -610,7 +619,8 @@ GalleryComponent.propDecorators = {
     playingChange: [{ type: Output }],
     indexChange: [{ type: Output }],
     itemsChange: [{ type: Output }],
-    error: [{ type: Output }]
+    error: [{ type: Output }],
+    applyHeight: [{ type: HostBinding, args: ['style.height',] }]
 };
 
 class GalleryIframeComponent {

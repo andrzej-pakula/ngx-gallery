@@ -916,6 +916,23 @@
         GalleryComponent.prototype.stop = function () {
             this.galleryRef.stop();
         };
+        GalleryComponent.prototype.withHeight = function (height) {
+            this._height = height + "px";
+        };
+        Object.defineProperty(GalleryComponent.prototype, "height", {
+            get: function () {
+                return this._height;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(GalleryComponent.prototype, "applyHeight", {
+            get: function () {
+                return this.height;
+            },
+            enumerable: false,
+            configurable: true
+        });
         return GalleryComponent;
     }());
     GalleryComponent.decorators = [
@@ -962,7 +979,8 @@
         playingChange: [{ type: i0.Output }],
         indexChange: [{ type: i0.Output }],
         itemsChange: [{ type: i0.Output }],
-        error: [{ type: i0.Output }]
+        error: [{ type: i0.Output }],
+        applyHeight: [{ type: i0.HostBinding, args: ['style.height',] }]
     };
 
     var GalleryIframeComponent = /** @class */ (function () {

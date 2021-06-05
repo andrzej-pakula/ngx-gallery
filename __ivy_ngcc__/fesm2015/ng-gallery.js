@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, ViewChild, HostBinding, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, HostBinding, ViewChild, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
 import { Subject, BehaviorSubject, of, EMPTY, Subscription, fromEvent, zip } from 'rxjs';
 import { filter, switchMap, delay, tap, map, debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -855,9 +855,20 @@ class GalleryComponent {
     stop() {
         this.galleryRef.stop();
     }
+    withHeight(height) {
+        this._height = `${height}px`;
+    }
+    get height() {
+        return this._height;
+    }
+    get applyHeight() {
+        return this.height;
+    }
 }
 GalleryComponent.ɵfac = function GalleryComponent_Factory(t) { return new (t || GalleryComponent)(ɵngcc0.ɵɵdirectiveInject(Gallery)); };
-GalleryComponent.ɵcmp = /*@__PURE__*/ ɵngcc0.ɵɵdefineComponent({ type: GalleryComponent, selectors: [["gallery"]], inputs: { nav: "nav", dots: "dots", loop: "loop", thumb: "thumb", zoomOut: "zoomOut", counter: "counter", dotsSize: "dotsSize", autoPlay: "autoPlay", gestures: "gestures", thumbWidth: "thumbWidth", thumbHeight: "thumbHeight", disableThumb: "disableThumb", panSensitivity: "panSensitivity", playerInterval: "playerInterval", itemTemplate: "itemTemplate", thumbTemplate: "thumbTemplate", thumbMode: "thumbMode", imageSize: "imageSize", dotsPosition: "dotsPosition", counterPosition: "counterPosition", slidingDirection: "slidingDirection", loadingStrategy: "loadingStrategy", thumbPosition: "thumbPosition", destroyRef: "destroyRef", skipInitConfig: "skipInitConfig", id: "id", items: "items" }, outputs: { itemClick: "itemClick", thumbClick: "thumbClick", playingChange: "playingChange", indexChange: "indexChange", itemsChange: "itemsChange", error: "error" }, features: [ɵngcc0.ɵɵNgOnChangesFeature], ngContentSelectors: _c0, decls: 4, vars: 6, consts: [[3, "state", "config", "action", "itemClick", "thumbClick", "error"]], template: function GalleryComponent_Template(rf, ctx) { if (rf & 1) {
+GalleryComponent.ɵcmp = /*@__PURE__*/ ɵngcc0.ɵɵdefineComponent({ type: GalleryComponent, selectors: [["gallery"]], hostVars: 2, hostBindings: function GalleryComponent_HostBindings(rf, ctx) { if (rf & 2) {
+        ɵngcc0.ɵɵstyleProp("height", ctx.applyHeight);
+    } }, inputs: { nav: "nav", dots: "dots", loop: "loop", thumb: "thumb", zoomOut: "zoomOut", counter: "counter", dotsSize: "dotsSize", autoPlay: "autoPlay", gestures: "gestures", thumbWidth: "thumbWidth", thumbHeight: "thumbHeight", disableThumb: "disableThumb", panSensitivity: "panSensitivity", playerInterval: "playerInterval", itemTemplate: "itemTemplate", thumbTemplate: "thumbTemplate", thumbMode: "thumbMode", imageSize: "imageSize", dotsPosition: "dotsPosition", counterPosition: "counterPosition", slidingDirection: "slidingDirection", loadingStrategy: "loadingStrategy", thumbPosition: "thumbPosition", destroyRef: "destroyRef", skipInitConfig: "skipInitConfig", id: "id", items: "items" }, outputs: { itemClick: "itemClick", thumbClick: "thumbClick", playingChange: "playingChange", indexChange: "indexChange", itemsChange: "itemsChange", error: "error" }, features: [ɵngcc0.ɵɵNgOnChangesFeature], ngContentSelectors: _c0, decls: 4, vars: 6, consts: [[3, "state", "config", "action", "itemClick", "thumbClick", "error"]], template: function GalleryComponent_Template(rf, ctx) { if (rf & 1) {
         ɵngcc0.ɵɵprojectionDef();
         ɵngcc0.ɵɵelementStart(0, "gallery-core", 0);
         ɵngcc0.ɵɵlistener("action", function GalleryComponent_Template_gallery_core_action_0_listener($event) { return ctx.onAction($event); })("itemClick", function GalleryComponent_Template_gallery_core_itemClick_0_listener($event) { return ctx.onItemClick($event); })("thumbClick", function GalleryComponent_Template_gallery_core_thumbClick_0_listener($event) { return ctx.onThumbClick($event); })("error", function GalleryComponent_Template_gallery_core_error_0_listener($event) { return ctx.onError($event); });
@@ -904,7 +915,8 @@ GalleryComponent.propDecorators = {
     playingChange: [{ type: Output }],
     indexChange: [{ type: Output }],
     itemsChange: [{ type: Output }],
-    error: [{ type: Output }]
+    error: [{ type: Output }],
+    applyHeight: [{ type: HostBinding, args: ['style.height',] }]
 };
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(GalleryComponent, [{
         type: Component,
@@ -984,6 +996,9 @@ GalleryComponent.propDecorators = {
             type: Output
         }], error: [{
             type: Output
+        }], applyHeight: [{
+            type: HostBinding,
+            args: ['style.height']
         }], id: [{
             type: Input
         }], items: [{

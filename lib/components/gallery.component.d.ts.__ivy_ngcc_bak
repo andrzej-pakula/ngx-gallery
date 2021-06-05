@@ -47,6 +47,7 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     private _indexChange$;
     private _playingChange$;
     private _playerListener$;
+    _height: string;
     constructor(_gallery: Gallery);
     private getConfig;
     onAction(i: string | number): void;
@@ -69,4 +70,7 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     reset(): void;
     play(interval?: number): void;
     stop(): void;
+    withHeight(height: number): void;
+    get height(): string;
+    get applyHeight(): string;
 }
