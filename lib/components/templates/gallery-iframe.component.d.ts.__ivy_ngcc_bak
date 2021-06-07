@@ -1,11 +1,13 @@
-import { ElementRef } from '@angular/core';
+import { ElementRef, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export declare class GalleryIframeComponent {
     private _sanitizer;
     iframeSrc: SafeResourceUrl;
+    iframeClickEvent: EventEmitter<ElementRef<any>>;
     set src(src: string);
     set pauseVideo(shouldPause: boolean);
     autoplay: boolean;
     iframe: ElementRef;
     constructor(_sanitizer: DomSanitizer);
+    onIframeClick(el: ElementRef): void;
 }

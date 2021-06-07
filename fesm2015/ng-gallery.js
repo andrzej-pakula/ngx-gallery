@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, HostBinding, ViewChild, ElementRef, NgZone, PLATFORM_ID, Directive, NgModule } from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, HostBinding, ViewChild, ElementRef, NgZone, PLATFORM_ID, Directive, Renderer2, HostListener, NgModule } from '@angular/core';
 import { Subject, BehaviorSubject, of, EMPTY, Subscription, fromEvent, zip } from 'rxjs';
 import { filter, switchMap, delay, tap, map, debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -413,6 +413,7 @@ class GalleryComponent {
         this.indexChange = new EventEmitter();
         this.itemsChange = new EventEmitter();
         this.error = new EventEmitter();
+        this.youtubeItemClickEvent = new EventEmitter();
         this._itemClick$ = Subscription.EMPTY;
         this._thumbClick$ = Subscription.EMPTY;
         this._itemChange$ = Subscription.EMPTY;
@@ -577,6 +578,7 @@ GalleryComponent.decorators = [
                   (action)="onAction($event)"
                   (itemClick)="onItemClick($event)"
                   (thumbClick)="onThumbClick($event)"
+                  (youtubeItemClickEvent)="youtubeItemClickEvent.emit($event)"
                   (error)="onError($event)"></gallery-core>
     <ng-content></ng-content>
   `,
@@ -620,12 +622,14 @@ GalleryComponent.propDecorators = {
     indexChange: [{ type: Output }],
     itemsChange: [{ type: Output }],
     error: [{ type: Output }],
+    youtubeItemClickEvent: [{ type: Output }],
     applyHeight: [{ type: HostBinding, args: ['style.height',] }]
 };
 
 class GalleryIframeComponent {
     constructor(_sanitizer) {
         this._sanitizer = _sanitizer;
+        this.iframeClickEvent = new EventEmitter();
     }
     set src(src) {
         this.iframeSrc = this._sanitizer.bypassSecurityTrustResourceUrl(src);
@@ -638,17 +642,24 @@ class GalleryIframeComponent {
             }
         }
     }
+    onIframeClick(el) {
+        this.iframeClickEvent.emit(el);
+    }
 }
 GalleryIframeComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gallery-iframe',
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 template: `
-    <iframe #iframe
+    <iframe
+            #iframe
             frameborder="0"
             allowfullscreen
+            (iframeClick)="onIframeClick($event)"
             [attr.allow]="autoplay ? 'autoplay' : ''"
-            [src]="iframeSrc">
+            [src]="iframeSrc"
+            iframeTracker
+    >
     </iframe>
   `
             },] }
@@ -657,6 +668,7 @@ GalleryIframeComponent.ctorParameters = () => [
     { type: DomSanitizer }
 ];
 GalleryIframeComponent.propDecorators = {
+    iframeClickEvent: [{ type: Output }],
     src: [{ type: Input, args: ['src',] }],
     pauseVideo: [{ type: Input, args: ['pause',] }],
     autoplay: [{ type: Input }],
@@ -866,6 +878,7 @@ class GalleryCoreComponent {
         this.itemClick = new EventEmitter();
         this.thumbClick = new EventEmitter();
         this.error = new EventEmitter();
+        this.youtubeItemClickEvent = new EventEmitter();
     }
     /** Set thumbnails position */
     get thumbPosition() {
@@ -908,6 +921,7 @@ GalleryCoreComponent.decorators = [
                       [config]="config"
                       (action)="action.emit($event)"
                       (itemClick)="itemClick.emit($event)"
+                      (youtubeItemClickEvent)="youtubeItemClickEvent.emit($event)"
                       (error)="error.emit($event)">
 
         <gallery-nav *ngIf="config.nav && state.items.length > 1"
@@ -938,6 +952,7 @@ GalleryCoreComponent.propDecorators = {
     itemClick: [{ type: Output }],
     thumbClick: [{ type: Output }],
     error: [{ type: Output }],
+    youtubeItemClickEvent: [{ type: Output }],
     thumbPosition: [{ type: HostBinding, args: ['attr.thumbPosition',] }],
     slidingDirection: [{ type: HostBinding, args: ['attr.slidingDirection',] }],
     disableThumb: [{ type: HostBinding, args: ['attr.disableThumb',] }],
@@ -1262,6 +1277,7 @@ class GallerySliderComponent {
         this.itemClick = new EventEmitter();
         /** Stream that emits when an error occurs */
         this.error = new EventEmitter();
+        this.youtubeItemClickEvent = new EventEmitter();
         // Activate sliding worker
         this.sliderState$ = this._slidingWorker$.pipe(map((state) => ({
             style: this.getSliderStyles(state),
@@ -1414,6 +1430,7 @@ GallerySliderComponent.decorators = [
                       [currIndex]="state.currIndex"
                       [index]="i"
                       (tapClick)="itemClick.emit(i)"
+                      (youtubeItemClickEvent)="youtubeItemClickEvent.emit($event)"
                       (error)="error.emit({itemIndex: i, error: $event})">
         </gallery-item>
 
@@ -1433,7 +1450,8 @@ GallerySliderComponent.propDecorators = {
     config: [{ type: Input }],
     action: [{ type: Output }],
     itemClick: [{ type: Output }],
-    error: [{ type: Output }]
+    error: [{ type: Output }],
+    youtubeItemClickEvent: [{ type: Output }]
 };
 
 class GalleryCounterComponent {
@@ -1456,6 +1474,7 @@ class GalleryItemComponent {
         this.Types = GalleryItemType;
         /** Stream that emits when an error occurs */
         this.error = new EventEmitter();
+        this.youtubeItemClickEvent = new EventEmitter();
     }
     get isActive() {
         return this.index === this.currIndex;
@@ -1517,10 +1536,13 @@ GalleryItemComponent.decorators = [
                      [pause]="currIndex !== index"
                      (error)="error.emit($event)"></gallery-video>
 
-      <gallery-iframe *ngSwitchCase="Types.Youtube"
+      <gallery-iframe
+                      *ngSwitchCase="Types.Youtube"
                       [src]="youtubeSrc"
                       [autoplay]="isAutoPlay"
-                      [pause]="currIndex !== index"></gallery-iframe>
+                      [pause]="currIndex !== index"
+                      (iframeClickEvent)="youtubeItemClickEvent.emit($event)"
+      ></gallery-iframe>
 
       <gallery-iframe *ngSwitchCase="Types.Iframe"
                       [src]="data.src"></gallery-iframe>
@@ -1546,6 +1568,7 @@ GalleryItemComponent.propDecorators = {
     type: [{ type: Input }],
     data: [{ type: Input }],
     error: [{ type: Output }],
+    youtubeItemClickEvent: [{ type: Output }],
     isActive: [{ type: HostBinding, args: ['class.g-active-item',] }]
 };
 
@@ -1684,6 +1707,60 @@ TapClick.propDecorators = {
     tapClick: [{ type: Output }]
 };
 
+class IframeTracker {
+    constructor(el, renderer) {
+        this.el = el;
+        this.renderer = renderer;
+        this.iframeClick = new EventEmitter();
+    }
+    ngOnInit() {
+        this.renderer.listen(window, 'blur', () => this.onWindowBlur());
+    }
+    onIframeMouseOver() {
+        this.log('Iframe mouse over');
+        this.iframeMouseOver = true;
+        this.resetFocusOnWindow();
+    }
+    onIframeMouseOut() {
+        this.log('Iframe mouse out');
+        this.iframeMouseOver = false;
+        this.resetFocusOnWindow();
+    }
+    onWindowBlur() {
+        if (this.iframeMouseOver) {
+            this.log('WOW! Iframe click!!!');
+            this.resetFocusOnWindow();
+            this.iframeClick.emit(this.el);
+        }
+    }
+    resetFocusOnWindow() {
+        setTimeout(() => {
+            this.log('reset focus to window');
+            window.focus();
+        }, 100);
+    }
+    log(message) {
+        if (this.debug) {
+            console.log(message);
+        }
+    }
+}
+IframeTracker.decorators = [
+    { type: Directive, args: [{
+                selector: '[iframeTracker]'
+            },] }
+];
+IframeTracker.ctorParameters = () => [
+    { type: ElementRef },
+    { type: Renderer2 }
+];
+IframeTracker.propDecorators = {
+    debug: [{ type: Input }],
+    iframeClick: [{ type: Output }],
+    onIframeMouseOver: [{ type: HostListener, args: ['mouseover',] }],
+    onIframeMouseOut: [{ type: HostListener, args: ['mouseout',] }]
+};
+
 class GalleryModule {
     static withConfig(config) {
         return {
@@ -1716,12 +1793,14 @@ GalleryModule.decorators = [
                     GalleryVideoComponent,
                     GalleryIframeComponent,
                     LazyImage,
-                    TapClick
+                    TapClick,
+                    IframeTracker,
                 ],
                 exports: [
                     GalleryComponent,
                     LazyImage,
-                    TapClick
+                    TapClick,
+                    IframeTracker,
                 ]
             },] }
 ];
@@ -1730,5 +1809,5 @@ GalleryModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { CounterPosition, DotsPosition, GALLERY_CONFIG, Gallery, GalleryAction, GalleryComponent, GalleryIframeComponent, GalleryImageComponent, GalleryItemType, GalleryModule, GalleryRef, GalleryVideoComponent, IframeItem, ImageItem, ImageLoaderMode, ImageSize, LoadingStrategy, SlidingDirection, ThumbnailsMode, ThumbnailsPosition, VideoItem, YoutubeItem, ɵ0, GalleryNavComponent as ɵa, GalleryDotsComponent as ɵb, GalleryCoreComponent as ɵc, GallerySliderComponent as ɵd, GalleryCounterComponent as ɵe, GalleryThumbsComponent as ɵf, GalleryThumbComponent as ɵg, GalleryItemComponent as ɵh, LazyImage as ɵi, TapClick as ɵj };
+export { CounterPosition, DotsPosition, GALLERY_CONFIG, Gallery, GalleryAction, GalleryComponent, GalleryIframeComponent, GalleryImageComponent, GalleryItemType, GalleryModule, GalleryRef, GalleryVideoComponent, IframeItem, ImageItem, ImageLoaderMode, ImageSize, LoadingStrategy, SlidingDirection, ThumbnailsMode, ThumbnailsPosition, VideoItem, YoutubeItem, ɵ0, GalleryNavComponent as ɵa, GalleryDotsComponent as ɵb, GalleryCoreComponent as ɵc, GallerySliderComponent as ɵd, GalleryCounterComponent as ɵe, GalleryThumbsComponent as ɵf, GalleryThumbComponent as ɵg, GalleryItemComponent as ɵh, LazyImage as ɵi, TapClick as ɵj, IframeTracker as ɵk };
 //# sourceMappingURL=ng-gallery.js.map

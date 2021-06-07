@@ -25,6 +25,7 @@ export declare class GallerySliderComponent implements OnInit, OnChanges, OnDest
     itemClick: EventEmitter<number>;
     /** Stream that emits when an error occurs */
     error: EventEmitter<GalleryError>;
+    youtubeItemClickEvent: EventEmitter<ElementRef<any>>;
     /** Item zoom */
     get zoom(): {
         transform: string;

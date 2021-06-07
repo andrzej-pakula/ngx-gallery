@@ -1,4 +1,4 @@
-import { OnInit, OnChanges, OnDestroy, SimpleChanges, TemplateRef, EventEmitter } from '@angular/core';
+import { OnInit, OnChanges, OnDestroy, SimpleChanges, TemplateRef, EventEmitter, ElementRef } from '@angular/core';
 import { Gallery } from '../services/gallery.service';
 import { GalleryRef } from '../services/gallery-ref';
 import { GalleryError, GalleryItem, GalleryState } from '../models/gallery.model';
@@ -42,6 +42,7 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     indexChange: EventEmitter<GalleryState>;
     itemsChange: EventEmitter<GalleryState>;
     error: EventEmitter<GalleryError>;
+    youtubeItemClickEvent: EventEmitter<ElementRef<any>>;
     private _itemClick$;
     private _thumbClick$;
     private _itemChange$;
@@ -75,7 +76,7 @@ export declare class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     get height(): string;
     get applyHeight(): string;
     static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GalleryComponent, never>;
-    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryComponent, "gallery", never, { "nav": "nav"; "dots": "dots"; "loop": "loop"; "thumb": "thumb"; "zoomOut": "zoomOut"; "counter": "counter"; "dotsSize": "dotsSize"; "autoPlay": "autoPlay"; "gestures": "gestures"; "thumbWidth": "thumbWidth"; "thumbHeight": "thumbHeight"; "disableThumb": "disableThumb"; "panSensitivity": "panSensitivity"; "playerInterval": "playerInterval"; "itemTemplate": "itemTemplate"; "thumbTemplate": "thumbTemplate"; "thumbMode": "thumbMode"; "imageSize": "imageSize"; "dotsPosition": "dotsPosition"; "counterPosition": "counterPosition"; "slidingDirection": "slidingDirection"; "loadingStrategy": "loadingStrategy"; "thumbPosition": "thumbPosition"; "destroyRef": "destroyRef"; "skipInitConfig": "skipInitConfig"; "id": "id"; "items": "items"; }, { "itemClick": "itemClick"; "thumbClick": "thumbClick"; "playingChange": "playingChange"; "indexChange": "indexChange"; "itemsChange": "itemsChange"; "error": "error"; }, never, ["*"]>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GalleryComponent, "gallery", never, { "nav": "nav"; "dots": "dots"; "loop": "loop"; "thumb": "thumb"; "zoomOut": "zoomOut"; "counter": "counter"; "dotsSize": "dotsSize"; "autoPlay": "autoPlay"; "gestures": "gestures"; "thumbWidth": "thumbWidth"; "thumbHeight": "thumbHeight"; "disableThumb": "disableThumb"; "panSensitivity": "panSensitivity"; "playerInterval": "playerInterval"; "itemTemplate": "itemTemplate"; "thumbTemplate": "thumbTemplate"; "thumbMode": "thumbMode"; "imageSize": "imageSize"; "dotsPosition": "dotsPosition"; "counterPosition": "counterPosition"; "slidingDirection": "slidingDirection"; "loadingStrategy": "loadingStrategy"; "thumbPosition": "thumbPosition"; "destroyRef": "destroyRef"; "skipInitConfig": "skipInitConfig"; "id": "id"; "items": "items"; }, { "itemClick": "itemClick"; "thumbClick": "thumbClick"; "playingChange": "playingChange"; "indexChange": "indexChange"; "itemsChange": "itemsChange"; "error": "error"; "youtubeItemClickEvent": "youtubeItemClickEvent"; }, never, ["*"]>;
 }
 
 //# sourceMappingURL=gallery.component.d.ts.map

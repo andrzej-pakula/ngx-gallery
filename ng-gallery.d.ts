@@ -10,6 +10,7 @@ export { GalleryNavComponent as ɵa } from './lib/components/gallery-nav.compone
 export { GallerySliderComponent as ɵd } from './lib/components/gallery-slider.component';
 export { GalleryThumbComponent as ɵg } from './lib/components/gallery-thumb.component';
 export { GalleryThumbsComponent as ɵf } from './lib/components/gallery-thumbs.component';
+export { IframeTracker as ɵk } from './lib/directives/iframe-tracker';
 export { LazyImage as ɵi } from './lib/directives/lazy-image';
 export { TapClick as ɵj } from './lib/directives/tap-click';
 

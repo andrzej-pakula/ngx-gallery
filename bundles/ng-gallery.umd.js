@@ -771,6 +771,7 @@
             this.indexChange = new i0.EventEmitter();
             this.itemsChange = new i0.EventEmitter();
             this.error = new i0.EventEmitter();
+            this.youtubeItemClickEvent = new i0.EventEmitter();
             this._itemClick$ = rxjs.Subscription.EMPTY;
             this._thumbClick$ = rxjs.Subscription.EMPTY;
             this._itemChange$ = rxjs.Subscription.EMPTY;
@@ -939,7 +940,7 @@
         { type: i0.Component, args: [{
                     selector: 'gallery',
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <gallery-core [state]=\"galleryRef.state | async\"\n                  [config]=\"galleryRef.config | async\"\n                  (action)=\"onAction($event)\"\n                  (itemClick)=\"onItemClick($event)\"\n                  (thumbClick)=\"onThumbClick($event)\"\n                  (error)=\"onError($event)\"></gallery-core>\n    <ng-content></ng-content>\n  ",
+                    template: "\n    <gallery-core [state]=\"galleryRef.state | async\"\n                  [config]=\"galleryRef.config | async\"\n                  (action)=\"onAction($event)\"\n                  (itemClick)=\"onItemClick($event)\"\n                  (thumbClick)=\"onThumbClick($event)\"\n                  (youtubeItemClickEvent)=\"youtubeItemClickEvent.emit($event)\"\n                  (error)=\"onError($event)\"></gallery-core>\n    <ng-content></ng-content>\n  ",
                     styles: ["::ng-deep gallery-core[dotsPosition=top] gallery-dots{top:0}::ng-deep gallery-core[dotsPosition=bottom] gallery-dots{bottom:0}::ng-deep gallery-dots{margin:7px;position:absolute;left:50%;transform:translateX(-50%)}::ng-deep .g-dot{cursor:pointer;z-index:20}::ng-deep .g-dot:hover .g-dot-inner{opacity:1}::ng-deep .g-dot-active .g-dot-inner{opacity:1;transform:scale(1.5)!important}::ng-deep .g-dot-inner{background-color:#fff;opacity:.6;width:30%;height:30%;border-radius:50%;box-shadow:0 0 1px #000;transition:all .2s ease}::ng-deep .g-dot,::ng-deep .g-dot-inner,::ng-deep gallery-dots{display:flex;justify-content:center;align-items:center}::ng-deep .g-nav-next,::ng-deep .g-nav-prev{position:absolute;top:50%;width:30px;height:40px;cursor:pointer;z-index:999}::ng-deep .g-nav-next{right:.5em;transform:translateY(-50%) perspective(1px)}::ng-deep .g-nav-prev{left:.5em;transform:translateY(-50%) perspective(1px) scale(-1)}@media only screen and (max-width:480px){::ng-deep .g-nav-next{right:.2em}::ng-deep .g-nav-prev{left:.2em}}::ng-deep .g-items-container{height:100%}::ng-deep .g-slider{position:absolute;transition:transform .4s cubic-bezier(.5,0,.5,1)}::ng-deep gallery-core[slidingDirection=horizontal] .g-slider{flex-direction:row}::ng-deep gallery-core[slidingDirection=vertical] .g-slider{flex-direction:column}::ng-deep gallery-thumbs{display:block;z-index:1;overflow:unset}::ng-deep .g-thumbs-container{position:relative;z-index:206;width:100%;height:100%;left:0;top:0;display:flex;overflow:unset}::ng-deep gallery-core[disableThumb=true] gallery-thumb{cursor:default}::ng-deep gallery-core[thumbPosition=bottom-left] gallery-thumbs .g-slider,::ng-deep gallery-core[thumbPosition=bottom] gallery-thumbs .g-slider,::ng-deep gallery-core[thumbPosition=top] gallery-thumbs .g-slider{flex-direction:row;top:0;left:50%}::ng-deep gallery-core[thumbPosition=bottom-left] gallery-thumb,::ng-deep gallery-core[thumbPosition=bottom] gallery-thumb,::ng-deep gallery-core[thumbPosition=top] gallery-thumb{padding:1px 0 1px 1px}::ng-deep gallery-core[thumbPosition=bottom-left] gallery-thumbs .g-slider{left:0}::ng-deep gallery-core[thumbPosition=left-top] gallery-thumbs .g-slider,::ng-deep gallery-core[thumbPosition=left] gallery-thumbs .g-slider,::ng-deep gallery-core[thumbPosition=right] gallery-thumbs .g-slider{flex-direction:column;top:50%;left:0}::ng-deep gallery-core[thumbPosition=left-top] gallery-thumb,::ng-deep gallery-core[thumbPosition=left] gallery-thumb,::ng-deep gallery-core[thumbPosition=right] gallery-thumb{padding:0 1px 1px}::ng-deep gallery-core[thumbPosition=left-top] gallery-thumbs .g-slider{top:0}::ng-deep gallery-core[thumbPosition=top]{flex-direction:column}::ng-deep gallery-core[thumbPosition=left-top],::ng-deep gallery-core[thumbPosition=left]{flex-direction:row}::ng-deep gallery-core[thumbPosition=right]{flex-direction:row-reverse}::ng-deep gallery-core[thumbPosition=bottom-left],::ng-deep gallery-core[thumbPosition=bottom]{flex-direction:column-reverse}::ng-deep gallery-thumb.g-active-thumb .g-thumb-loading{background-color:#464646}::ng-deep .g-thumb-loading{position:relative;overflow:hidden;height:100%;background-color:#262626}::ng-deep .g-thumb-loading:before{content:\"\";position:absolute;top:0;right:0;bottom:0;left:50%;z-index:1;width:500%;margin-left:-250%;-webkit-animation:phAnimation .8s linear infinite;animation:phAnimation .8s linear infinite;background:linear-gradient(90deg,hsla(0,0%,100%,0) 46%,hsla(0,0%,100%,.35) 50%,hsla(0,0%,100%,0) 54%) 50% 50%}@-webkit-keyframes phAnimation{0%{transform:translate3d(-30%,0,0)}to{transform:translate3d(30%,0,0)}}@keyframes phAnimation{0%{transform:translate3d(-30%,0,0)}to{transform:translate3d(30%,0,0)}}::ng-deep gallery-core[counterPosition=top] .g-counter{top:0;border-bottom-left-radius:4px;border-bottom-right-radius:4px}::ng-deep gallery-core[counterPosition=bottom] .g-counter{bottom:0;border-top-left-radius:4px;border-top-right-radius:4px}::ng-deep .g-counter{z-index:50;position:absolute;left:50%;transform:translateX(-50%) perspective(1px);font-size:12px;padding:4px 10px;color:#fff;background-color:rgba(0,0,0,.5)}::ng-deep gallery[gallerize] gallery-item{cursor:pointer}::ng-deep gallery-item,::ng-deep gallery-thumb{position:relative;height:100%;width:100%;display:block;overflow:hidden}::ng-deep gallery-item h2,::ng-deep gallery-item h4,::ng-deep gallery-thumb h2,::ng-deep gallery-thumb h4{color:coral;margin:0}::ng-deep gallery-item h2,::ng-deep gallery-thumb h2{font-size:3.5em;margin-bottom:.3em}::ng-deep gallery-item h4,::ng-deep gallery-thumb h4{font-size:1.6em}::ng-deep gallery-item{z-index:10}::ng-deep gallery-item iframe,::ng-deep gallery-item video{position:absolute;width:100%;height:100%}::ng-deep gallery-thumb{opacity:.5;cursor:pointer;transition:opacity .3s cubic-bezier(.5,0,.5,1)}::ng-deep gallery-thumb.g-active-thumb{opacity:1}::ng-deep .g-image-item{background-position:50%;background-repeat:no-repeat;background-size:cover;width:100%;height:100%}::ng-deep .g-image-error-message,::ng-deep .g-template{position:absolute;z-index:10;left:0;top:0;right:0;bottom:0;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column}::ng-deep .g-loading{position:absolute;transform:translate3d(-50%,-50%,0);left:50%;top:50%;width:80px;height:80px}::ng-deep gallery-core[imageSize=contain] gallery-slider .g-image-item{background-size:contain}::ng-deep gallery-image{display:flex;justify-content:center;align-items:center;height:100%}::ng-deep gallery{position:relative;z-index:1;overflow:hidden;display:block;height:500px;background-color:#000}::ng-deep gallery *{box-sizing:border-box}::ng-deep gallery,::ng-deep gallery-core{position:relative;overflow:hidden}::ng-deep .g-box,::ng-deep .g-slider,::ng-deep gallery-core{display:flex;height:100%;width:100%}::ng-deep gallery[fluid]{transform:translateX(-50vw);width:100vw;left:50%}::ng-deep gallery[fluid][fluid=false]{transform:none;width:auto;left:auto}::ng-deep .g-no-transition{transition:unset!important}::ng-deep .g-box,::ng-deep gallery-slider{overflow:hidden;position:relative;display:flex;flex-direction:column;flex:1;order:1;height:100%}::ng-deep .g-btn-close svg,::ng-deep gallery-nav svg{width:100%;height:100%;filter:drop-shadow(0 0 1px black);transition:opacity .2s linear;opacity:.6}::ng-deep .g-btn-close svg:hover,::ng-deep gallery-nav svg:hover{opacity:1}"]
                 },] }
     ];
@@ -980,12 +981,14 @@
         indexChange: [{ type: i0.Output }],
         itemsChange: [{ type: i0.Output }],
         error: [{ type: i0.Output }],
+        youtubeItemClickEvent: [{ type: i0.Output }],
         applyHeight: [{ type: i0.HostBinding, args: ['style.height',] }]
     };
 
     var GalleryIframeComponent = /** @class */ (function () {
         function GalleryIframeComponent(_sanitizer) {
             this._sanitizer = _sanitizer;
+            this.iframeClickEvent = new i0.EventEmitter();
         }
         Object.defineProperty(GalleryIframeComponent.prototype, "src", {
             set: function (src) {
@@ -1006,19 +1009,23 @@
             enumerable: false,
             configurable: true
         });
+        GalleryIframeComponent.prototype.onIframeClick = function (el) {
+            this.iframeClickEvent.emit(el);
+        };
         return GalleryIframeComponent;
     }());
     GalleryIframeComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'gallery-iframe',
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <iframe #iframe\n            frameborder=\"0\"\n            allowfullscreen\n            [attr.allow]=\"autoplay ? 'autoplay' : ''\"\n            [src]=\"iframeSrc\">\n    </iframe>\n  "
+                    template: "\n    <iframe\n            #iframe\n            frameborder=\"0\"\n            allowfullscreen\n            (iframeClick)=\"onIframeClick($event)\"\n            [attr.allow]=\"autoplay ? 'autoplay' : ''\"\n            [src]=\"iframeSrc\"\n            iframeTracker\n    >\n    </iframe>\n  "
                 },] }
     ];
     GalleryIframeComponent.ctorParameters = function () { return [
         { type: platformBrowser.DomSanitizer }
     ]; };
     GalleryIframeComponent.propDecorators = {
+        iframeClickEvent: [{ type: i0.Output }],
         src: [{ type: i0.Input, args: ['src',] }],
         pauseVideo: [{ type: i0.Input, args: ['pause',] }],
         autoplay: [{ type: i0.Input }],
@@ -1194,6 +1201,7 @@
             this.itemClick = new i0.EventEmitter();
             this.thumbClick = new i0.EventEmitter();
             this.error = new i0.EventEmitter();
+            this.youtubeItemClickEvent = new i0.EventEmitter();
         }
         Object.defineProperty(GalleryCoreComponent.prototype, "thumbPosition", {
             /** Set thumbnails position */
@@ -1249,7 +1257,7 @@
         { type: i0.Component, args: [{
                     selector: 'gallery-core',
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <gallery-thumbs *ngIf=\"config.thumb\"\n                    [state]=\"state\"\n                    [config]=\"config\"\n                    (action)=\"action.emit($event)\"\n                    (thumbClick)=\"thumbClick.emit($event)\">\n    </gallery-thumbs>\n    <div class=\"g-box\">\n      <gallery-slider [state]=\"state\"\n                      [config]=\"config\"\n                      (action)=\"action.emit($event)\"\n                      (itemClick)=\"itemClick.emit($event)\"\n                      (error)=\"error.emit($event)\">\n\n        <gallery-nav *ngIf=\"config.nav && state.items.length > 1\"\n                     [state]=\"state\"\n                     [config]=\"config\"\n                     (action)=\"action.emit($event)\">\n        </gallery-nav>\n\n      </gallery-slider>\n\n      <gallery-dots *ngIf=\"config.dots\"\n                    [state]=\"state\"\n                    [config]=\"config\"\n                    (action)=\"action.emit($event)\">\n      </gallery-dots>\n\n      <gallery-counter *ngIf=\"config.counter\"\n                       [state]=\"state\">\n      </gallery-counter>\n    </div>\n  "
+                    template: "\n    <gallery-thumbs *ngIf=\"config.thumb\"\n                    [state]=\"state\"\n                    [config]=\"config\"\n                    (action)=\"action.emit($event)\"\n                    (thumbClick)=\"thumbClick.emit($event)\">\n    </gallery-thumbs>\n    <div class=\"g-box\">\n      <gallery-slider [state]=\"state\"\n                      [config]=\"config\"\n                      (action)=\"action.emit($event)\"\n                      (itemClick)=\"itemClick.emit($event)\"\n                      (youtubeItemClickEvent)=\"youtubeItemClickEvent.emit($event)\"\n                      (error)=\"error.emit($event)\">\n\n        <gallery-nav *ngIf=\"config.nav && state.items.length > 1\"\n                     [state]=\"state\"\n                     [config]=\"config\"\n                     (action)=\"action.emit($event)\">\n        </gallery-nav>\n\n      </gallery-slider>\n\n      <gallery-dots *ngIf=\"config.dots\"\n                    [state]=\"state\"\n                    [config]=\"config\"\n                    (action)=\"action.emit($event)\">\n      </gallery-dots>\n\n      <gallery-counter *ngIf=\"config.counter\"\n                       [state]=\"state\">\n      </gallery-counter>\n    </div>\n  "
                 },] }
     ];
     GalleryCoreComponent.propDecorators = {
@@ -1259,6 +1267,7 @@
         itemClick: [{ type: i0.Output }],
         thumbClick: [{ type: i0.Output }],
         error: [{ type: i0.Output }],
+        youtubeItemClickEvent: [{ type: i0.Output }],
         thumbPosition: [{ type: i0.HostBinding, args: ['attr.thumbPosition',] }],
         slidingDirection: [{ type: i0.HostBinding, args: ['attr.slidingDirection',] }],
         disableThumb: [{ type: i0.HostBinding, args: ['attr.disableThumb',] }],
@@ -1561,6 +1570,7 @@
             this.itemClick = new i0.EventEmitter();
             /** Stream that emits when an error occurs */
             this.error = new i0.EventEmitter();
+            this.youtubeItemClickEvent = new i0.EventEmitter();
             // Activate sliding worker
             this.sliderState$ = this._slidingWorker$.pipe(operators.map(function (state) { return ({
                 style: _this.getSliderStyles(state),
@@ -1703,7 +1713,7 @@
         { type: i0.Component, args: [{
                     selector: 'gallery-slider',
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <div *ngIf=\"sliderState$ | async; let sliderState\"\n         class=\"g-items-container\"\n         [ngStyle]=\"zoom\">\n\n      <div class=\"g-slider\"\n           [class.g-no-transition]=\"sliderState.active\"\n           [ngStyle]=\"sliderState.style\">\n\n        <gallery-item *ngFor=\"let item of state.items; let i = index\"\n                      [type]=\"item.type\"\n                      [config]=\"config\"\n                      [data]=\"item.data\"\n                      [currIndex]=\"state.currIndex\"\n                      [index]=\"i\"\n                      (tapClick)=\"itemClick.emit(i)\"\n                      (error)=\"error.emit({itemIndex: i, error: $event})\">\n        </gallery-item>\n\n      </div>\n    </div>\n    <ng-content></ng-content>\n  "
+                    template: "\n    <div *ngIf=\"sliderState$ | async; let sliderState\"\n         class=\"g-items-container\"\n         [ngStyle]=\"zoom\">\n\n      <div class=\"g-slider\"\n           [class.g-no-transition]=\"sliderState.active\"\n           [ngStyle]=\"sliderState.style\">\n\n        <gallery-item *ngFor=\"let item of state.items; let i = index\"\n                      [type]=\"item.type\"\n                      [config]=\"config\"\n                      [data]=\"item.data\"\n                      [currIndex]=\"state.currIndex\"\n                      [index]=\"i\"\n                      (tapClick)=\"itemClick.emit(i)\"\n                      (youtubeItemClickEvent)=\"youtubeItemClickEvent.emit($event)\"\n                      (error)=\"error.emit({itemIndex: i, error: $event})\">\n        </gallery-item>\n\n      </div>\n    </div>\n    <ng-content></ng-content>\n  "
                 },] }
     ];
     GallerySliderComponent.ctorParameters = function () { return [
@@ -1716,7 +1726,8 @@
         config: [{ type: i0.Input }],
         action: [{ type: i0.Output }],
         itemClick: [{ type: i0.Output }],
-        error: [{ type: i0.Output }]
+        error: [{ type: i0.Output }],
+        youtubeItemClickEvent: [{ type: i0.Output }]
     };
 
     var GalleryCounterComponent = /** @class */ (function () {
@@ -1740,6 +1751,7 @@
             this.Types = exports.GalleryItemType;
             /** Stream that emits when an error occurs */
             this.error = new i0.EventEmitter();
+            this.youtubeItemClickEvent = new i0.EventEmitter();
         }
         Object.defineProperty(GalleryItemComponent.prototype, "isActive", {
             get: function () {
@@ -1792,7 +1804,7 @@
         { type: i0.Component, args: [{
                     selector: 'gallery-item',
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <ng-container *ngIf=\"load\" [ngSwitch]=\"type\">\n\n      <ng-container *ngSwitchCase=\"Types.Image\">\n\n        <gallery-image [src]=\"data.src\"\n                       [loadingIcon]=\"config.loadingIcon\"\n                       [loadingError]=\"config.loadingError\"\n                       (error)=\"error.emit($event)\"></gallery-image>\n\n        <div class=\"g-template g-item-template\">\n          <ng-container *ngTemplateOutlet=\"config.itemTemplate;\n          context: { index: this.index, currIndex: this.currIndex, type: this.type, data: this.data }\">\n          </ng-container>\n        </div>\n\n      </ng-container>\n\n      <gallery-video *ngSwitchCase=\"Types.Video\"\n                     [src]=\"data.src\"\n                     [poster]=\"data.poster\"\n                     [controls]=\"data.controls\"\n                     [play]=\"isAutoPlay\"\n                     [pause]=\"currIndex !== index\"\n                     (error)=\"error.emit($event)\"></gallery-video>\n\n      <gallery-iframe *ngSwitchCase=\"Types.Youtube\"\n                      [src]=\"youtubeSrc\"\n                      [autoplay]=\"isAutoPlay\"\n                      [pause]=\"currIndex !== index\"></gallery-iframe>\n\n      <gallery-iframe *ngSwitchCase=\"Types.Iframe\"\n                      [src]=\"data.src\"></gallery-iframe>\n\n      <ng-container *ngSwitchDefault>\n\n        <div class=\"g-template g-item-template\">\n          <ng-container *ngTemplateOutlet=\"config.itemTemplate;\n          context: { index: this.index, currIndex: this.currIndex, type: this.type, data: this.data }\">\n          </ng-container>\n        </div>\n\n      </ng-container>\n\n    </ng-container>\n  "
+                    template: "\n    <ng-container *ngIf=\"load\" [ngSwitch]=\"type\">\n\n      <ng-container *ngSwitchCase=\"Types.Image\">\n\n        <gallery-image [src]=\"data.src\"\n                       [loadingIcon]=\"config.loadingIcon\"\n                       [loadingError]=\"config.loadingError\"\n                       (error)=\"error.emit($event)\"></gallery-image>\n\n        <div class=\"g-template g-item-template\">\n          <ng-container *ngTemplateOutlet=\"config.itemTemplate;\n          context: { index: this.index, currIndex: this.currIndex, type: this.type, data: this.data }\">\n          </ng-container>\n        </div>\n\n      </ng-container>\n\n      <gallery-video *ngSwitchCase=\"Types.Video\"\n                     [src]=\"data.src\"\n                     [poster]=\"data.poster\"\n                     [controls]=\"data.controls\"\n                     [play]=\"isAutoPlay\"\n                     [pause]=\"currIndex !== index\"\n                     (error)=\"error.emit($event)\"></gallery-video>\n\n      <gallery-iframe\n                      *ngSwitchCase=\"Types.Youtube\"\n                      [src]=\"youtubeSrc\"\n                      [autoplay]=\"isAutoPlay\"\n                      [pause]=\"currIndex !== index\"\n                      (iframeClickEvent)=\"youtubeItemClickEvent.emit($event)\"\n      ></gallery-iframe>\n\n      <gallery-iframe *ngSwitchCase=\"Types.Iframe\"\n                      [src]=\"data.src\"></gallery-iframe>\n\n      <ng-container *ngSwitchDefault>\n\n        <div class=\"g-template g-item-template\">\n          <ng-container *ngTemplateOutlet=\"config.itemTemplate;\n          context: { index: this.index, currIndex: this.currIndex, type: this.type, data: this.data }\">\n          </ng-container>\n        </div>\n\n      </ng-container>\n\n    </ng-container>\n  "
                 },] }
     ];
     GalleryItemComponent.propDecorators = {
@@ -1802,6 +1814,7 @@
         type: [{ type: i0.Input }],
         data: [{ type: i0.Input }],
         error: [{ type: i0.Output }],
+        youtubeItemClickEvent: [{ type: i0.Output }],
         isActive: [{ type: i0.HostBinding, args: ['class.g-active-item',] }]
     };
 
@@ -1937,6 +1950,63 @@
         tapClick: [{ type: i0.Output }]
     };
 
+    var IframeTracker = /** @class */ (function () {
+        function IframeTracker(el, renderer) {
+            this.el = el;
+            this.renderer = renderer;
+            this.iframeClick = new i0.EventEmitter();
+        }
+        IframeTracker.prototype.ngOnInit = function () {
+            var _this = this;
+            this.renderer.listen(window, 'blur', function () { return _this.onWindowBlur(); });
+        };
+        IframeTracker.prototype.onIframeMouseOver = function () {
+            this.log('Iframe mouse over');
+            this.iframeMouseOver = true;
+            this.resetFocusOnWindow();
+        };
+        IframeTracker.prototype.onIframeMouseOut = function () {
+            this.log('Iframe mouse out');
+            this.iframeMouseOver = false;
+            this.resetFocusOnWindow();
+        };
+        IframeTracker.prototype.onWindowBlur = function () {
+            if (this.iframeMouseOver) {
+                this.log('WOW! Iframe click!!!');
+                this.resetFocusOnWindow();
+                this.iframeClick.emit(this.el);
+            }
+        };
+        IframeTracker.prototype.resetFocusOnWindow = function () {
+            var _this = this;
+            setTimeout(function () {
+                _this.log('reset focus to window');
+                window.focus();
+            }, 100);
+        };
+        IframeTracker.prototype.log = function (message) {
+            if (this.debug) {
+                console.log(message);
+            }
+        };
+        return IframeTracker;
+    }());
+    IframeTracker.decorators = [
+        { type: i0.Directive, args: [{
+                    selector: '[iframeTracker]'
+                },] }
+    ];
+    IframeTracker.ctorParameters = function () { return [
+        { type: i0.ElementRef },
+        { type: i0.Renderer2 }
+    ]; };
+    IframeTracker.propDecorators = {
+        debug: [{ type: i0.Input }],
+        iframeClick: [{ type: i0.Output }],
+        onIframeMouseOver: [{ type: i0.HostListener, args: ['mouseover',] }],
+        onIframeMouseOut: [{ type: i0.HostListener, args: ['mouseout',] }]
+    };
+
     var GalleryModule = /** @class */ (function () {
         function GalleryModule() {
         }
@@ -1972,12 +2042,14 @@
                         GalleryVideoComponent,
                         GalleryIframeComponent,
                         LazyImage,
-                        TapClick
+                        TapClick,
+                        IframeTracker,
                     ],
                     exports: [
                         GalleryComponent,
                         LazyImage,
-                        TapClick
+                        TapClick,
+                        IframeTracker,
                     ]
                 },] }
     ];
@@ -2009,6 +2081,7 @@
     exports.ɵh = GalleryItemComponent;
     exports.ɵi = LazyImage;
     exports.ɵj = TapClick;
+    exports.ɵk = IframeTracker;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

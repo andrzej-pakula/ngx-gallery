@@ -26,6 +26,7 @@ export declare class GallerySliderComponent implements OnInit, OnChanges, OnDest
     itemClick: EventEmitter<number>;
     /** Stream that emits when an error occurs */
     error: EventEmitter<GalleryError>;
+    youtubeItemClickEvent: EventEmitter<ElementRef<any>>;
     /** Item zoom */
     get zoom(): {
         transform: string;
@@ -44,7 +45,7 @@ export declare class GallerySliderComponent implements OnInit, OnChanges, OnDest
     private prev;
     private updateSlider;
     static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<GallerySliderComponent, never>;
-    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GallerySliderComponent, "gallery-slider", never, { "state": "state"; "config": "config"; }, { "action": "action"; "itemClick": "itemClick"; "error": "error"; }, never, ["*"]>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<GallerySliderComponent, "gallery-slider", never, { "state": "state"; "config": "config"; }, { "action": "action"; "itemClick": "itemClick"; "error": "error"; "youtubeItemClickEvent": "youtubeItemClickEvent"; }, never, ["*"]>;
 }
 
 //# sourceMappingURL=gallery-slider.component.d.ts.map

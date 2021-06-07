@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, ElementRef } from '@angular/core';
 import { GalleryError, GalleryState } from '../models/gallery.model';
 import { GalleryConfig } from '../models/config.model';
 export declare class GalleryCoreComponent {
@@ -8,6 +8,7 @@ export declare class GalleryCoreComponent {
     itemClick: EventEmitter<number>;
     thumbClick: EventEmitter<number>;
     error: EventEmitter<GalleryError>;
+    youtubeItemClickEvent: EventEmitter<ElementRef<any>>;
     /** Set thumbnails position */
     get thumbPosition(): 'top' | 'left' | 'left-top' | 'right' | 'bottom' | 'bottom-left';
     /** Set sliding direction */
